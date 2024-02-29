@@ -1,43 +1,39 @@
 syntax="proto3";
 
+option go_package="api/";
+
 service AuthService {
-  rpc Auth(AuthRequest) returns (AuthResponse);
-  rpc Register(RegisterRequest) returns (RegisterResponse);
-  rpc Refresh(RefreshRequest) returns (RefreshResponse);
+  rpc SignIn(SignInRequest) returns (TokenResponse);
+  rpc SignUp(SignUpRequest) returns (TokenResponse);
+  rpc Refresh(RefreshRequest) returns (TokenResponse);
   rpc Logout(LogoutRequest) returns (LogoutResponse);
 }
 
-message AuthRequest {
+message SignInRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message SignUpRequest {
   string username = 1;
   string password = 2;
   int32 role = 3;
 }
 
-message AuthResponse {
-  string refreshToken = 1;
-  string accessToken = 2;
-}
-
-message RegisterRequest {
-
-}
-
-message RegisterResponse {
-
-}
-
 message RefreshRequest {
-
-}
-
-message RefreshResponse {
-
+  string email = 1;
 }
 
 message LogoutRequest {
-
+  string email = 1;
 }
 
 message LogoutResponse {
 
 }
+
+message TokenResponse {
+  string refreshToken = 1;
+  string accessToken = 2;
+}
+
