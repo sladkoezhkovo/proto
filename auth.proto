@@ -1,21 +1,22 @@
 syntax="proto3";
 
+package auth;
 option go_package="api/";
 
 service AuthService {
   rpc SignIn(SignInRequest) returns (TokenResponse);
   rpc SignUp(SignUpRequest) returns (TokenResponse);
   rpc Refresh(RefreshRequest) returns (TokenResponse);
-  rpc Logout(LogoutRequest) returns (LogoutResponse);
+  rpc Logout(LogoutRequest) returns (Empty);
 }
 
 message SignInRequest {
-  string username = 1;
+  string email = 1;
   string password = 2;
 }
 
 message SignUpRequest {
-  string username = 1;
+  string email = 1;
   string password = 2;
   int32 role = 3;
 }
@@ -28,9 +29,7 @@ message LogoutRequest {
   string email = 1;
 }
 
-message LogoutResponse {
-
-}
+message Empty { }
 
 message TokenResponse {
   string refreshToken = 1;
