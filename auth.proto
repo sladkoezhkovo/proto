@@ -8,6 +8,7 @@ service AuthService {
   rpc SignUp(SignUpRequest) returns (TokenResponse);
   rpc Refresh(RefreshRequest) returns (TokenResponse);
   rpc Logout(LogoutRequest) returns (Empty);
+  rpc Auth(AuthRequest) returns (AuthResponse);
 }
 
 message SignInRequest {
@@ -35,4 +36,13 @@ message TokenResponse {
   string refreshToken = 1;
   string accessToken = 2;
 }
+
+message AuthRequest {
+  string accessToken = 1;
+}
+
+message AuthResponse {
+  bool approved = 1;
+}
+
 
