@@ -39,6 +39,7 @@ message TokenResponse {
 
 message AuthRequest {
   string accessToken = 1;
+  string role = 2;
 }
 
 message AuthResponse {
