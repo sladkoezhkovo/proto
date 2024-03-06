@@ -9,6 +9,7 @@ service AuthService {
   rpc Refresh(RefreshRequest) returns (TokenResponse);
   rpc Logout(LogoutRequest) returns (Empty);
   rpc Auth(AuthRequest) returns (AuthResponse);
+  rpc CreateRole(CreateRoleRequest) returns (Empty);
 }
 
 message SignInRequest {
@@ -46,4 +47,6 @@ message AuthResponse {
   bool approved = 1;
 }
 
-
+message CreateRoleRequest {
+  string name = 1;
+}
