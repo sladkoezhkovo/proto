@@ -28,7 +28,7 @@ message RefreshRequest {
 }
 
 message LogoutRequest {
-  string email = 1;
+  string accessToken = 1;
 }
 
 message Empty { }
