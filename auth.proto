@@ -49,4 +49,5 @@ message AuthResponse {
 
 message CreateRoleRequest {
   string name = 1;
+  uint32 authority = 2;
 }
