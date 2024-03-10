@@ -69,7 +69,7 @@ message City {
 message District {
     int64 id = 1;
     string name = 2;
-    int64 cityId = 3;
+    string city = 3;
 }
 message PropertyType {
     int64 id = 1;
@@ -112,7 +112,7 @@ message CreateCityRequest {
 }
 message CreateDistrictRequest {
     string name = 1;
-    int64 cityId = 2;
+    string city = 2;
 }
 message CreatePropertyTypeRequest {
     string name = 1;
