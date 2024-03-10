@@ -112,7 +112,7 @@ message CreateCityRequest {
 }
 message CreateDistrictRequest {
     string name = 1;
-    string city = 2;
+    int64 cityId = 2;
 }
 message CreatePropertyTypeRequest {
     string name = 1;
