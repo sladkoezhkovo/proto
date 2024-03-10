@@ -33,7 +33,7 @@ service AdminService {
     rpc ListConfectionaryType (ListRequest) returns (ListConfectionaryTypeResponse);
 
     rpc UpdateCity (City) returns (City);
-    rpc UpdateDistrict (District) returns (District);
+    rpc UpdateDistrict (UpdateDistrictRequest) returns (District);
     rpc UpdatePropertyType (PropertyType) returns (PropertyType);
     rpc UpdateUnit (Unit) returns (Unit);
     rpc UpdatePackaging (Packaging) returns (Packaging);
@@ -69,7 +69,7 @@ message City {
 message District {
     int64 id = 1;
     string name = 2;
-    City city = 3;
+    string city = 3;
 }
 message PropertyType {
     int64 id = 1;
@@ -89,22 +89,22 @@ message ConfectionaryType {
 }
 
 message ListCityResponse {
-    repeated City cities = 1;
+    repeated City entries = 1;
 }
 message ListDistrictResponse {
-    repeated District districts = 1;
+    repeated District entries  = 1;
 }
 message ListPropertyTypeResponse {
-    repeated PropertyType propertyTypes = 1;
+    repeated PropertyType entries = 1;
 }
 message ListUnitResponse {
-    repeated Unit units = 1;
+    repeated Unit entries = 1;
 }
 message ListPackagingResponse {
-    repeated Packaging packages = 1;
+    repeated Packaging entries = 1;
 }
 message ListConfectionaryTypeResponse {
-    repeated ConfectionaryType confectonaryTypes = 1;
+    repeated ConfectionaryType entries = 1;
 }
 
 message CreateCityRequest {
@@ -125,4 +125,10 @@ message CreatePackagingRequest {
 }
 message CreateConfectionaryTypeRequest {
     string name = 1;
+}
+
+message UpdateDistrictRequest {
+    int64 id = 1;
+    string name = 2;
+    int64 cityId = 3;
 }
