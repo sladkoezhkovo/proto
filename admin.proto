@@ -1,0 +1,128 @@
+syntax="proto3";
+
+package admin;
+option go_package="api/";
+
+service AdminService {
+    rpc CreateCity (CreateCityRequest) returns (City);
+    rpc CreateDistrict (CreateDistrictRequest) returns (District);
+    rpc CreatePropertyType (CreatePropertyTypeRequest) returns (PropertyType);
+    rpc CreateUnit (CreateUnitRequest) returns (Unit);
+    rpc CreatePackaging (CreatePackagingRequest) returns (Packaging);
+    rpc CreateConfectionaryType (CreateConfectionaryTypeRequest) returns (ConfectionaryType);
+
+    rpc FindByIdCity (FindByIdRequest) returns (City);
+    rpc FindByIdDistrict (FindByIdRequest) returns (District);
+    rpc FindByIdPropertyType (FindByIdRequest) returns (PropertyType);
+    rpc FindByIdUnit (FindByIdRequest) returns (Unit);
+    rpc FindByIdPackaging (FindByIdRequest) returns (Packaging);
+    rpc FindByIdConfectionaryType (FindByIdRequest) returns (ConfectionaryType);
+
+    rpc FindByNameCity (FindByNameRequest) returns (City);
+    rpc FindByNameDistrict (FindByNameRequest) returns (District);
+    rpc FindByNamePropertyType (FindByNameRequest) returns (PropertyType);
+    rpc FindByNameUnit (FindByNameRequest) returns (Unit);
+    rpc FindByNamePackaging (FindByNameRequest) returns (Packaging);
+    rpc FindByNameConfectionaryType (FindByNameRequest) returns (ConfectionaryType);
+    
+    rpc ListCity (ListRequest) returns (ListCityResponse);
+    rpc ListDistrict (ListRequest) returns (ListDistrictResponse);
+    rpc ListPropertyType (ListRequest) returns (ListPropertyTypeResponse);
+    rpc ListUnit (ListRequest) returns (ListUnitResponse);
+    rpc ListPackaging (ListRequest) returns (ListPackagingResponse);
+    rpc ListConfectionaryType (ListRequest) returns (ListConfectionaryTypeResponse);
+
+    rpc UpdateCity (City) returns (City);
+    rpc UpdateDistrict (District) returns (District);
+    rpc UpdatePropertyType (PropertyType) returns (PropertyType);
+    rpc UpdateUnit (Unit) returns (Unit);
+    rpc UpdatePackaging (Packaging) returns (Packaging);
+    rpc UpdateConfectionaryType (ConfectionaryType) returns (ConfectionaryType);
+
+    rpc DeleteCity (FindByIdRequest) returns (Empty);
+    rpc DeleteDistrict (FindByIdRequest) returns (Empty);
+    rpc DeletePropertyType (FindByIdRequest) returns (Empty);
+    rpc DeleteUnit (FindByIdRequest) returns (Empty);
+    rpc DeletePackaging (FindByIdRequest) returns (Empty);
+    rpc DeleteConfectionaryType (FindByIdRequest) returns (Empty);
+}
+
+message Empty {}
+
+message ListRequest {
+    int32 offset = 1;
+    int32 limit = 2;
+}
+
+message FindByIdRequest {
+    int64 id = 1;
+}
+
+message FindByNameRequest {
+    string name = 1;
+}
+
+message City {
+    int64 id = 1;
+    string name = 2;
+}
+message District {
+    int64 id = 1;
+    string name = 2;
+    int64 cityId = 3;
+}
+message PropertyType {
+    int64 id = 1;
+    string name = 2;
+}
+message Unit {
+    int64 id = 1;
+    string name = 2;
+}
+message Packaging {
+    int64 id = 1;
+    string name = 2;
+}
+message ConfectionaryType {
+    int64 id = 1;
+    string name = 2;
+}
+
+message ListCityResponse {
+    repeated City cities = 1;
+}
+message ListDistrictResponse {
+    repeated District districts = 1;
+}
+message ListPropertyTypeResponse {
+    repeated PropertyType propertyTypes = 1;
+}
+message ListUnitResponse {
+    repeated Unit units = 1;
+}
+message ListPackagingResponse {
+    repeated Packaging packages = 1;
+}
+message ListConfectionaryTypeResponse {
+    repeated ConfectionaryType confectonaryTypes = 1;
+}
+
+message CreateCityRequest {
+    string name = 1;
+}
+message CreateDistrictRequest {
+    string name = 1;
+    int64 cityId = 2;
+}
+message CreatePropertyTypeRequest {
+    string name = 1;
+}
+message CreateUnitRequest {
+    string name = 1;
+}
+message CreatePackagingRequest {
+    string name = 1;
+}
+message CreateConfectionaryTypeRequest {
+    string name = 1;
+}
