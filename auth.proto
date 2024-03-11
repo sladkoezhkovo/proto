@@ -1,7 +1,7 @@
 syntax="proto3";
 
 package auth;
-option go_package="api/";
+option go_package="api/auth/";
 
 service AuthService {
   rpc SignIn(SignInRequest) returns (TokenResponse);

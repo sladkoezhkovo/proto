@@ -1,10 +1,10 @@
 syntax = "proto3";
 
 package invoice;
-option go_package="api/";
+option go_package="api/invoice/";
 
 service Invoice {
-  rpc Create(Request) returns (Empty);
+  rpc Submit(Request) returns (Empty);
 }
 
 enum AccountType {
@@ -17,7 +17,10 @@ message Request {
   string firstName = 2;
   string middleName = 3;
   string orgName = 4;
-  AccountType type = 5;
+  string email = 5;
+  string openedAt = 6;
+  string city = 7;
+  AccountType type = 8;
 }
 
 
