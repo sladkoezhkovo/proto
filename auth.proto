@@ -9,7 +9,19 @@ service AuthService {
   rpc Refresh(RefreshRequest) returns (TokenResponse);
   rpc Logout(LogoutRequest) returns (Empty);
   rpc Auth(AuthRequest) returns (AuthResponse);
-  rpc CreateRole(CreateRoleRequest) returns (Empty);
+
+  // Role CRUD
+  rpc CreateRole(CreateRoleRequest) returns (Role);
+  rpc FindByIdRole(FindRoleByIdRequest)  returns (Role);
+  rpc ListRole(Bounds) returns (ListRoleResponse);
+  rpc ListRoleByName(ListRoleByNameRequest) returns (ListRoleResponse);
+  rpc UpdateRole(Role) returns (Role);
+  rpc DeleteRole(DeleteRoleRequest) returns (Empty);
+}
+
+message Bounds {
+  int32 limit = 1;
+  int32 offset = 2;
 }
 
 message SignInRequest {
@@ -50,4 +62,28 @@ message AuthResponse {
 message CreateRoleRequest {
   string name = 1;
   int32 authority = 2;
+}
+
+message FindRoleByIdRequest {
+  int64 id = 1;
+}
+
+message DeleteRoleRequest {
+  int64 id = 1;
+}
+
+message ListRoleByNameRequest {
+  string name = 1;
+  Bounds bounds = 2;
+}
+
+message Role {
+  int64 id = 1;
+  string name = 2;
+  int32 authority = 3;
+}
+
+message ListRoleResponse {
+  repeated Role entries = 1;
+  int64 count = 2;
 }
