@@ -20,7 +20,7 @@ message SignInRequest {
 message SignUpRequest {
   string email = 1;
   string password = 2;
-  string role = 3;
+  int64 roleId = 3;
 }
 
 message RefreshRequest {
@@ -40,7 +40,7 @@ message TokenResponse {
 
 message AuthRequest {
   string accessToken = 1;
-  string role = 2;
+  int64 roleId = 2;
 }
 
 message AuthResponse {
@@ -49,5 +49,5 @@ message AuthResponse {
 
 message CreateRoleRequest {
   string name = 1;
-  uint32 authority = 2;
+  int32 authority = 2;
 }
