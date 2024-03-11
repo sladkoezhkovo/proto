@@ -18,12 +18,12 @@ service AdminService {
     rpc FindByIdPackaging (FindByIdRequest) returns (Packaging);
     rpc FindByIdConfectionaryType (FindByIdRequest) returns (ConfectionaryType);
 
-    rpc FindByNameCity (FindByNameRequest) returns (City);
-    rpc FindByNameDistrict (FindByNameRequest) returns (District);
-    rpc FindByNamePropertyType (FindByNameRequest) returns (PropertyType);
-    rpc FindByNameUnit (FindByNameRequest) returns (Unit);
-    rpc FindByNamePackaging (FindByNameRequest) returns (Packaging);
-    rpc FindByNameConfectionaryType (FindByNameRequest) returns (ConfectionaryType);
+    rpc ListByNameCity (ListByNameRequest) returns (ListCityResponse);
+    rpc ListByNameDistrict (ListByNameRequest) returns (ListDistrictResponse);
+    rpc ListByNamePropertyType (ListByNameRequest) returns (ListPropertyTypeResponse);
+    rpc ListByNameUnit (ListByNameRequest) returns (ListUnitResponse);
+    rpc ListByNamePackaging (ListByNameRequest) returns (ListPackagingResponse);
+    rpc ListByNameConfectionaryType (ListByNameRequest) returns (ListConfectionaryTypeResponse);
     
     rpc ListCity (ListRequest) returns (ListCityResponse);
     rpc ListDistrict (ListRequest) returns (ListDistrictResponse);
@@ -58,8 +58,9 @@ message FindByIdRequest {
     int64 id = 1;
 }
 
-message FindByNameRequest {
+message ListByNameRequest {
     string name = 1;
+    ListRequest bounds = 2;
 }
 
 message City {
