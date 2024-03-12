@@ -10,6 +10,11 @@ service AuthService {
   rpc Logout(LogoutRequest) returns (Empty);
   rpc Auth(AuthRequest) returns (AuthResponse);
 
+  // Users RD
+  rpc FindUserById(FindUserByIdRequest) returns (UserDetails);
+  rpc ListUser(Bounds) returns (ListUserResponse);
+  rpc ListUserByRole(ListUserByRoleRequest) returns (ListUserResponse);
+
   // Role CRUD
   rpc CreateRole(CreateRoleRequest) returns (Role);
   rpc FindByIdRole(FindRoleByIdRequest)  returns (Role);
@@ -59,6 +64,13 @@ message AuthResponse {
   bool approved = 1;
 }
 
+// ===================== ROLE ADMIN MESSAGES =========================
+message Role {
+  int64 id = 1;
+  string name = 2;
+  int32 authority = 3;
+}
+
 message CreateRoleRequest {
   string name = 1;
   int32 authority = 2;
@@ -77,13 +89,35 @@ message ListRoleByNameRequest {
   Bounds bounds = 2;
 }
 
-message Role {
-  int64 id = 1;
-  string name = 2;
-  int32 authority = 3;
-}
-
 message ListRoleResponse {
   repeated Role entries = 1;
-  int64 count = 2;
+  int32 count = 2;
+}
+
+// ===================== USERS ADMIN MESSAGES =========================
+message User {
+  int64 id = 1;
+  string email = 2;
+  string role = 3;
+}
+
+message UserDetails {
+  int64 id = 1;
+  string email = 2;
+  string role = 3;
+  int64 createdAt = 4;
+}
+
+message FindUserByIdRequest {
+  int64 id = 1;
+}
+
+message ListUserResponse {
+  repeated User entries = 1;
+  int32 count = 2;
+}
+
+message ListUserByRoleRequest {
+  int64 roleId = 1;
+  Bounds bounds = 2;
 }
