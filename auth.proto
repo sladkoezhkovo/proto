@@ -10,7 +10,7 @@ service AuthService {
   rpc Logout(LogoutRequest) returns (Empty);
   rpc Auth(AuthRequest) returns (AuthResponse);
 
-  // Users RD
+  // Users R 
   rpc FindUserById(FindUserByIdRequest) returns (UserDetails);
   rpc ListUser(Bounds) returns (ListUserResponse);
   rpc ListUserByRole(ListUserByRoleRequest) returns (ListUserResponse);

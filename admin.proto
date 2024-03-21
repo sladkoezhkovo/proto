@@ -18,19 +18,13 @@ service AdminService {
     rpc FindByIdPackaging (FindByIdRequest) returns (Packaging);
     rpc FindByIdConfectionaryType (FindByIdRequest) returns (ConfectionaryType);
 
-    rpc ListByNameCity (ListByNameRequest) returns (ListCityResponse);
-    rpc ListByNameDistrict (ListByNameRequest) returns (ListDistrictResponse);
-    rpc ListByNamePropertyType (ListByNameRequest) returns (ListPropertyTypeResponse);
-    rpc ListByNameUnit (ListByNameRequest) returns (ListUnitResponse);
-    rpc ListByNamePackaging (ListByNameRequest) returns (ListPackagingResponse);
-    rpc ListByNameConfectionaryType (ListByNameRequest) returns (ListConfectionaryTypeResponse);
-    
-    rpc ListCity (ListRequest) returns (ListCityResponse);
-    rpc ListDistrict (ListRequest) returns (ListDistrictResponse);
-    rpc ListPropertyType (ListRequest) returns (ListPropertyTypeResponse);
-    rpc ListUnit (ListRequest) returns (ListUnitResponse);
-    rpc ListPackaging (ListRequest) returns (ListPackagingResponse);
-    rpc ListConfectionaryType (ListRequest) returns (ListConfectionaryTypeResponse);
+    // TODO wrap bounds into filtering messages 
+    rpc ListCity (Bounds) returns (ListCityResponse);
+    rpc ListDistrict (Bounds) returns (ListDistrictResponse);
+    rpc ListPropertyType (Bounds) returns (ListPropertyTypeResponse);
+    rpc ListUnit (Bounds) returns (ListUnitResponse);
+    rpc ListPackaging (Bounds) returns (ListPackagingResponse);
+    rpc ListConfectionaryType (Bounds) returns (ListConfectionaryTypeResponse);
 
     rpc UpdateCity (City) returns (City);
     rpc UpdateDistrict (UpdateDistrictRequest) returns (District);
@@ -49,7 +43,7 @@ service AdminService {
 
 message Empty {}
 
-message ListRequest {
+message Bounds {
     int32 offset = 1;
     int32 limit = 2;
 }
@@ -60,7 +54,7 @@ message FindByIdRequest {
 
 message ListByNameRequest {
     string name = 1;
-    ListRequest bounds = 2;
+    Bounds bounds = 2;
 }
 
 message City {
@@ -91,21 +85,27 @@ message ConfectionaryType {
 
 message ListCityResponse {
     repeated City entries = 1;
+    int64 count = 2;
 }
 message ListDistrictResponse {
     repeated District entries  = 1;
+    int64 count = 2;
 }
 message ListPropertyTypeResponse {
     repeated PropertyType entries = 1;
+    int64 count = 2;
 }
 message ListUnitResponse {
     repeated Unit entries = 1;
+    int64 count = 2;
 }
 message ListPackagingResponse {
     repeated Packaging entries = 1;
+    int64 count = 2;
 }
 message ListConfectionaryTypeResponse {
     repeated ConfectionaryType entries = 1;
+    int64 count = 2;
 }
 
 message CreateCityRequest {
