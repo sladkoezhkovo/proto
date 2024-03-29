@@ -10,13 +10,10 @@ service AuthService {
   rpc Logout(LogoutRequest) returns (Empty);
   rpc Auth(AuthRequest) returns (AuthResponse);
 
-  // Users UD
   rpc FindUser(IdRequest) returns (UserDetails);
   rpc ListUser(Bounds) returns (ListUserResponse);
-
-  // Users UD
-  rpc UpdateUser(User) returns (Empty);
-  rpc DeleteUser(IdRequest) returns (Empty);
+  rpc PromoteUser(PromoteUserRequest) returns (Empty);
+  rpc DeleteUser(IdRequest) returns (Empty)
 
   // Role CRUD
   rpc CreateRole(CreateRoleRequest) returns (Role);
@@ -25,6 +22,8 @@ service AuthService {
   rpc UpdateRole(Role) returns (Role);
   rpc DeleteRole(IdRequest) returns (Empty);
 }
+
+message Empty { }
 
 message Bounds {
   int32 limit = 1;
@@ -54,8 +53,6 @@ message LogoutRequest {
   string accessToken = 1;
 }
 
-message Empty { }
-
 message TokenResponse {
   string refreshToken = 1;
   string accessToken = 2;
@@ -82,15 +79,6 @@ message CreateRoleRequest {
   int32 authority = 2;
 }
 
-message FindRoleByIdRequest {
-  int64 id = 1;
-}
-
-message ListRoleByNameRequest {
-  string name = 1;
-  Bounds bounds = 2;
-}
-
 message ListRoleResponse {
   repeated Role entries = 1;
   int32 count = 2;
@@ -106,12 +94,8 @@ message User {
 message UserDetails {
   int64 id = 1;
   string email = 2;
-  Role role = 3;
+  int64 role = 3;
   int64 createdAt = 4;
-}
-
-message FindUserByIdRequest {
-  int64 id = 1;
 }
 
 message ListUserResponse {
@@ -119,7 +103,7 @@ message ListUserResponse {
   int32 count = 2;
 }
 
-message ListUserByRoleRequest {
-  int64 roleId = 1;
-  Bounds bounds = 2;
+message PromoteUserRequest {
+  int64 id = 1;
+  int64 roleId = 2;
 }
