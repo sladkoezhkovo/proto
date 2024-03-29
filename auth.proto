@@ -13,7 +13,7 @@ service AuthService {
   rpc FindUser(IdRequest) returns (UserDetails);
   rpc ListUser(Bounds) returns (ListUserResponse);
   rpc PromoteUser(PromoteUserRequest) returns (Empty);
-  rpc DeleteUser(IdRequest) returns (Empty)
+  rpc DeleteUser(IdRequest) returns (Empty);
 
   // Role CRUD
   rpc CreateRole(CreateRoleRequest) returns (Role);
